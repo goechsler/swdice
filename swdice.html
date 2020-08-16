@@ -24,8 +24,9 @@ body {
   display: inline-block;
   height: 1.5em;
   text-align: center;
-  width:100%;
+  width: 100%;
   font-size: 2.5em;
+  user-select: none;
 }
 input {
   padding: 0;
@@ -40,12 +41,16 @@ input {
   width: 100%;
   text-align: center;
   display: inline-block;  
-  height: 3em;
-  font-size: 2.5em;
-  
+  font-size: 1.5em;
+  user-select: none;  
 }
+
+.clear {
+  margin-bottom: 2.8em;
+}
+
 .dinput {
- width:12.5%;
+ width:12.49%;
  display: inline-block;
 }
 .arrow.boost {
@@ -246,15 +251,12 @@ function dice_images(result) {
     });      
     imagenames = imagenames.concat(inames);
   }
-  
-  console.log(imagenames);
   return imagenames;
 }
 
 var panel = $('#panel');
 
 $.each(dice, function(k) {
-  console.log(k);
   var dinput = $('<div class="dinput ' + k + '"></div>');
   
   dinput.append($('<div class="label"></div>').append($('<img class="dice"/>').attr("src", 'data:image/png;base64,' + images[k])));
@@ -281,14 +283,15 @@ $.each(dice, function(k) {
 
 var buttons =  $('<div class="dinput"></div>');
   
-buttons.append($('<div class="clear"><span>Clear</span></div>').click(function(){
+buttons.append($('<div class="arrow clear"><span>Clear</span></div>').click(function(){
   $('.dinput input').each(function(i, d) {
     $(d).val(0);
   });
   return false;
 }));
 
-buttons.append($('<div class="roll"><span>Roll</span></div>').click(function(){
+
+buttons.append($('<div class="arrow roll"><span>Roll</span></div>').click(function(){
   var pool = {};
   var cnt = 0;
   for (var k in dice) {
