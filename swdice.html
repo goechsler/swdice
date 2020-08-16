@@ -219,20 +219,6 @@ function totals(result) {
   return total;
 }
 
-function legend(){
-  var l = {}
-  $.each(symbols, function(name, int){
-    l[name] = uni[int]
-  })
-  return l;
-}
-
-function nice_face(face) {
-  return '[ ' + $.map(face, function(icon){
-    return uni[icon]
-  }).join('') + ' ]'
-}
-
 function roll_dice(dice_type) {
   var sides = dice_type.length;
   var side = random(0, sides-1);
