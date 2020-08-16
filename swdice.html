@@ -15,28 +15,20 @@ body {
 #panel {
   margin-bottom: 5px;
 }
-.title {
-  position: absolute;
+.label {
   text-align: center;
-  width: 100%;
+  width:100%;
 }
 .arrow {
   padding-top: 0.2em;
   display: inline-block;
   height: 1.5em;
   text-align: center;
-  position: absolute;
-  width:50%;
+  width:100%;
   font-size: 2.5em;
 }
-.minus {
-  left: 0;
-}
-.plus {
-  left: 50%;
-}
 input {
-  padding-top: 0.4em;
+  padding: 0;
   width: 100%;
   text-align: center;
   border: 0;
@@ -45,34 +37,36 @@ input {
   font-size: 2em;
 }
 .clear, .roll {
- width: 6.25%;
- display: inline-block;  
+  width: 100%;
+  text-align: center;
+  display: inline-block;  
+  height: 3em;
+  font-size: 2.5em;
+  
 }
 .dinput {
  width:12.5%;
- height: 3em;
  display: inline-block;
- position: relative;
 }
-.dinput.boost {
+.arrow.boost {
   background-color: #72CDDC;
 }
-.dinput.setback {
+.arrow.setback {
   background-color: #888888;
 }
-.dinput.ability {
+.arrow.ability {
   background-color: #40AF49;
 }
-.dinput.difficulty {
+.arrow.difficulty {
   background-color: rgba(83,35,128,.5);
 }
-.dinput.proficiency {
+.arrow.proficiency {
   background-color: #FFF20F;
 }
-.dinput.challenge   {
+.arrow.challenge   {
   background-color: #D2232A;
 }
-.dinput.force {
+.arrow.force {
   background-color: #FDF5E6;
 }
 .roll-result {
@@ -146,6 +140,9 @@ var images = {"ability":"iVBORw0KGgoAAAANSUhEUgAAAC0AAAAoCAMAAABdCYMbAAAABGdBTUE
 "threat":"iVBORw0KGgoAAAANSUhEUgAAACoAAAAoCAMAAAC\/1ZhiAAAABGdBTUEAALGPC\/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAWJQTFRFAAAAIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8g\/\/\/\/AJz8hQAAAHR0Uk5TAABX+A+2Ru\/uRQI8DgWZmD0DK9RaImxvWwSVxhfHQez9dAywG9X3Gck\/B0NrbUQIeP6TAXHz3dwqMOGWdgacm0LtyBhI8N\/gR1m39F8dH64LY\/mpCWKHpqOeNh7P6TrOgYx\/4tclL3182I2koDc7CmAglED9tgpwAAAAAWJLR0R1qGqY+wAAAAlwSFlzAAALEwAACxMBAJqcGAAAAjZJREFUOMuVVWdbwkAMbhRFTxwFB3WBe+IqqLj3xj1Q3FsRZ\/\/\/Y3KAd9giNl+avPc2zbpUUYQA5OUbkuTnAShZBBwFMrXAkZWJbgudgllUbOUUWImLYCgtE9TyUg65KlT5DXB7KrkLqKquSUl1FQfA63FLVNBqjbp6y8CgvsGo1UCE2Ogz\/E2WkUGT3\/A1\/hxBcwuG5mm1ora24VFLM6Tf9LbLdgaVe2n3ptxCRyeavi60oLunN5CS3r5+Qrp8eNjZAUmnA4NoDWHsoAdDolihoI6QNoTq4ECyPu5hNEZGyUV4TO7WWJiw0RFUh6lgoI2j6p\/A12ByysiQ6UkEYcKP6jh9dGYWtbl5AhcWUXUuLaMsUYedK+Rgfg7V2RlQXDzFVcIca6iub0Q2USIb62isOcjDKi+QSwnQc2uboJ1dVPf2k8nu76Gxe0AutrfIW0A5PIpGj08IiZ0icnYOqbqcn6F5ESEfJ8fR6NGhojJd14mpX1ImVyzdGHZF9jUdAVKYKpodvsGT2zsxGXe3VLB702gAPFCpgyANUZBa82hBffw\/9Z469SQH8PQrAJUxxtOCa0rjWaT1LKWFJBWLFY+\/JAiIXFCxXtPFehXFSrzE41gsqQUHvAVvSeqbuQWmxr7HPlBi7+bGyuOywmdkmYvFuGQM4fSfQ2hjtHNemE9xYbJew55u+vyXdA3tXG4bK8POIvp7vdUZnxr8b2lWZixNaRWXm1dxCbOMrLgo14K3\/dvI8TP6BrydAr\/nE58RAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE2LTA3LTMwVDE1OjEyOjA4KzAyOjAwzZEO9AAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNi0wNy0zMFQxMDozMjo0OCswMjowMH3FsmAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC",
 "triumph":"iVBORw0KGgoAAAANSUhEUgAAACUAAAAoCAMAAABO3sPvAAAABGdBTUEAALGPC\/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAm1QTFRFAAAAIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8gIx8g\/\/\/\/K78dZAAAAM10Uk5TAAAIsZ4CEtK\/Awop3soWARhHfajG2fr1yal+SAQ0itb389zD+fTI2viLMiWT7LtyORkHNu\/dIzhwupEFWNinQAs64iB\/0FJE5yfRDIysUPwvjYATXP7wnYGrZz6qziJ0Rs3bKpdOmO2hBv1Zn+6SPJpiIbKlbLNodpsxvZxvDw3MtULh+5UkwSi2603kdREUo1Xpt1OiXeXHtGUtbc+JeGB5FWSvNeDLrjce1IdaVrA98QlPhrzfHaQspvZmoGuUDuMQVPIzxTCCO5ZfXkVKMNAAAAABYktHRM702fL\/AAAACXBIWXMAAAsTAAALEwEAmpwYAAADiUlEQVQYGYXBjX8MBBzH8e\/n7LB5OIlN7bBrNzvs2G520TErJiZu3G7TsMK03bKEnlbnPJ2FkPLUiBQpPaKyNHrUc7\/\/qdvtHPKq3m\/9E45BOU70Pxg8ZKgD\/RfIzRs2fMRIJ+hf4Bp1z+h7x4zNLxh33\/2Fo1zobrjHT5hY5HmguNhbMqnU45s4eYob3QmmlvlLpk0vrwhUzqgKjnxw5qwS\/0NTQbchNHtOQfXcGhAPFzwyD8ibW10wZ3YIZVEz31O7wIFSeNS7cBGScCyo88yvQRksfsy3JAjqx9Kwvx6lQHCJb9lilEZouS8nggbQEG2sRGlEmnwrQigFGjyPR1AGzVawEg0gsqqkASQxrHR1C7qJJ8z3JMqgZc3adUi4Wz3rQTexwvKXogxY73nKjShva4+hLJZZx9PoJmIbOsuR65nGjSgLnjXbhLLY2Fjm0ubSLQ6UhfM5s+dRFo4X1raooehFdAuhQWYvoSxoLmpQV9vLSBCZ50QSjlfMlqNbmNIZ1+q6CBLMH741AWLbGLPJSMKdcCKJyJDt8u+IIcHOXcktlS6I1JrtJqV72at7kERs7z6F211Igtf22\/4DB6kYa5YDr28da0MrkITrUFIWB6XAG29a8nB5yy6z6sVHipNWvAckQdwUPupC\/XAd85sd72ozq11SYvbWOlAKrvaw\/D0hlIbzRKNZ1AaMOAnqR6inTavrBqMB5L7tsYwR9aA0Dp6qVY6\/HmUQOx21tPx38kBp1PtzdKboBEojd9G7Q6I2wDPr2HugFM4WnVH38HMBJOF8v+x81G7J\/2D6Zhci9mFVUM7WzgtI4qOPzaLhpKWFLaWj9JN6Nxc6W51iZWOXG4m8T2c2n\/msLGr9Ph+9d5fXzBbGdzbNuIiIbWgsBKXhjJv5LpkdvhwIfvHlV8eT5klucSBRf2VML0qj+4rZ11t9tvAqgrxFRw4lO76JIcGJvvYESoFrHVZ1Mm+VRa+hFLZdLzjQC5IITPDuTiCJyz2W\/y1MOW\/VbiQS3\/lOB1AaiVbvoV4Q4\/fZue+BmR1V84Deo97WBMogcbpvXGEIRtsPlUj82NPxE6HCSX2TEyiLwKYrN+KVFZPsAEjiQm3zz\/Eb588G0G3gavxS5y\/eNd1uF65Y5NffpnVe2nASdCdiv++uyvec6rnedXRHnb+v6o+LMXQ3coN\/Np3yhy3pX9P0VzAXZf0NLYYdjX86OoEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTYtMDctMzBUMTU6MTI6MDgrMDI6MDDNkQ70AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE2LTA3LTMwVDEwOjMyOjA5KzAyOjAwX\/i3LgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAASUVORK5CYII="};
 
+// Adding an images under the key force to fix UI
+images["force"] = images["force7"];
+
 var symbols = {
   3: 'triumph',
   1: 'success',
@@ -167,17 +164,6 @@ var dice = {
   challenge  :[[], [4], [4],   [4,4], [4,4],[5], [5],   [4,5], [4,5],[5,5],[5,5], [6]  ],
   setback:    [[], [],  [4],   [4],   [5],  [5]],
   force:     [[8], [8], [8],   [8],   [8],  [8], [8,8], [7],   [7],  [7,7],[7,7], [7,7]]
-}
-
-
-var dice_names = {
-  ability:    "Begabung",
-  proficiency:"Training",
-  boost:      "Verstärkung",
-  difficulty: "Schwierigkeit",
-  challenge:  "Herausforderung",
-  setback:    "Komplikation",
-  force:      "Macht",  
 }
 
 function roll(pool){
@@ -268,34 +254,41 @@ function dice_images(result) {
 var panel = $('#panel');
 
 $.each(dice, function(k) {
-  var dinput = $('<div class="dinput '+k+'"></div>');
-  //var K = k.charAt(0).toUpperCase() + k.slice(1);
-  var K = dice_names[k];
-  dinput.append($('<div class="title">'+K+'</div>'));
-  dinput.append($('<input disabled="disabled" name="' + k+ '" value="0"></input'));
-  dinput.append($('<span class="minus arrow" name="'+k+'">-</span>').click(function(){
-    var name = $(this).attr('name');
-    var input = $('input[name='+name+']'); 
-    var v = input.val();
-    input.val(--v<0?0:v);
-  }));
-  dinput.append($('<span class="plus arrow" name="'+k+'">+</span>').click(function(){
+  console.log(k);
+  var dinput = $('<div class="dinput ' + k + '"></div>');
+  
+  dinput.append($('<div class="label"></div>').append($('<img class="dice"/>').attr("src", 'data:image/png;base64,' + images[k])));
+  
+  dinput.append($('<span class="plus arrow ' + k + '" name="'+k+'">+</span>').click(function(){
     var name = $(this).attr('name');
     var input = $('input[name='+name+']');
     var v = input.val();
     input.val(++v);
   }));
-  panel.append(dinput);
+  
+ dinput.append($('<input disabled="disabled" name="' + k+ '" value="0"></input'));
+  
+  dinput.append($('<span class="minus arrow ' + k + '" name="'+k+'">-</span>').click(function(){
+    var name = $(this).attr('name');
+    var input = $('input[name='+name+']'); 
+    var v = input.val();
+    input.val(--v<0?0:v);
+  }));
+  
+  
+  panel.append(dinput)
 });
 
-panel.append($('<div class="clear"><span>Clear</span></div>').click(function(){
+var buttons =  $('<div class="dinput"></div>');
+  
+buttons.append($('<div class="clear"><span>Clear</span></div>').click(function(){
   $('.dinput input').each(function(i, d) {
     $(d).val(0);
   });
   return false;
 }));
 
-panel.append($('<div class="roll"><span>Roll</span></div>').click(function(){
+buttons.append($('<div class="roll"><span>Roll</span></div>').click(function(){
   var pool = {};
   var cnt = 0;
   for (var k in dice) {
@@ -326,6 +319,8 @@ panel.append($('<div class="roll"><span>Roll</span></div>').click(function(){
   $("#results").prepend(total).prepend(result);
   return false;
 }));
+
+panel.append(buttons);
 
 }());
 </script>
